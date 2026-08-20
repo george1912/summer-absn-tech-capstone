@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Typhon Case Filler</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 12px;
+        min-width: 360px;
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+      .status-pill {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 700;
+        border-radius: 999px;
+        padding: 4px 10px;
+        border: 1px solid #ccc;
+      }
+      .status-pill.connected {
+        background: #e8f7ed;
+        color: #1b7f3b;
+        border-color: #b8e3c6;
+      }
+      .status-pill.disconnected {
+        background: #fdecec;
+        color: #a32121;
+        border-color: #f3b9b9;
+      }
+      .status-subtext {
+        margin-top: 4px;
+        font-size: 11px;
+        color: #555;
+        word-break: break-word;
+      }
+      .status-pill.ai-connected {
+        background: #e8f7ed;
+        color: #1b7f3b;
+        border-color: #b8e3c6;
+      }
+      .status-pill.ai-disconnected {
+        background: #fdecec;
+        color: #a32121;
+        border-color: #f3b9b9;
+      }
+      button {
+        width: 100%;
+        padding: 8px 10px;
+        cursor: pointer;
+      }
+      textarea,
+      input[type="text"] {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 12px;
+        padding: 6px;
+      }
+      .hint {
+        font-size: 11px;
+        color: #555;
+        margin-bottom: 8px;
+      }
+      #status {
+        margin-top: 10px;
+        font-size: 12px;
+        color: #333;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      #suggestions {
+        margin-top: 8px;
+        font-size: 12px;
+        border: 1px solid #ddd;
+        padding: 6px;
+        background: #fafafa;
+        max-height: 180px;
+        overflow: auto;
+      }
+      .suggestion-item {
+        display: block;
+        margin-bottom: 6px;
+      }
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      .modal-card {
+        background: #fff;
+        width: 92%;
+        max-width: 420px;
+        max-height: 78vh;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 10px;
+        overflow: auto;
+      }
+      .modal-title {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .modal-list {
+        font-size: 12px;
+        margin-bottom: 10px;
+        white-space: pre-wrap;
+      }
+      .panel {
+        border: 1px solid #d8d8d8;
+        background: #fafafa;
+        padding: 8px;
+        margin-bottom: 10px;
+      }
+      .panel-title {
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="row" style="display: block">
+      <div id="connectionBadge" class="status-pill disconnected">Not connected</div>
+      <div id="connectionSubtext" class="status-subtext">Open a Typhon case-entry page in the active tab.</div>
+    </div>
+    <div class="row">
+      <button type="button" id="checkConnection">Check Typhon connection</button>
+    </div>
+    <div class="row">
+      <button type="button" id="applyQuickStart">Apply Common Flags</button>
+    </div>
+    <div class="row">
+      <button type="button" id="applyProceduresPreset">Apply Procedures/Skills Preset</button>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Student Profile (saved)</div>
+      <div class="row">
+        <label style="font-size:12px"><input type="checkbox" id="studentProfileEnabled" /> Enable this profile</label>
+      </div>
+      <div class="row">
+        <input type="text" id="studentSemester" placeholder="Semester (e.g. Spring)" />
+      </div>
+      <div class="row">
+        <input type="text" id="studentCourse" placeholder="Course" />
+      </div>
+      <div class="row">
+        <input type="text" id="studentFaculty" placeholder="Clinical Faculty" />
+      </div>
+      <div class="row">
+        <input type="text" id="studentSite" placeholder="Clinical Site" />
+      </div>
+      <div class="row">
+        <label style="font-size:12px"><input type="checkbox" id="studentPublicHealth" /> Public Health</label>
+      </div>
+      <div class="row">
+        <button type="button" id="applyStudentProfile">Apply Student Profile</button>
+      </div>
+    </div>
+
+    <div class="row"><strong style="font-size: 13px">AI Medication Suggestion</strong></div>
+    <div class="row">
+      <input type="text" id="aiEndpoint" placeholder="AI endpoint (e.g. https://your-api.example.com/suggest-meds)" />
+    </div>
+    <div class="hint">Use your backend endpoint, or OpenAI direct: https://api.openai.com/v1/responses</div>
+    <div class="row">
+      <input type="password" id="aiApiKey" placeholder="Optional API key (sent as Authorization Bearer and x-api-key)" />
+      <button type="button" id="toggleApiKeyVisibility" style="max-width: 96px">Show</button>
+    </div>
+    <div class="row">
+      <button type="button" id="connectAi">Test AI endpoint</button>
+    </div>
+    <div class="row" style="display: block; margin-top: -4px">
+      <div id="aiBadge" class="status-pill ai-disconnected">AI not connected</div>
+      <div id="aiSubtext" class="status-subtext">Enter endpoint and test connection.</div>
+    </div>
+    <div class="row">
+      <textarea
+        id="clinicalNote"
+        rows="5"
+        placeholder="Paste a clinical story OR a med list (one med per line)"
+      ></textarea>
+    </div>
+    <div class="row">
+      <button type="button" id="clearClinicalNote">Clear text</button>
+    </div>
+    <div class="row">
+      <button type="button" id="suggestMeds">Suggest meds</button>
+    </div>
+
+    <div id="suggestions">(no suggestions yet)</div>
+
+    <div class="row">
+      <button type="button" id="applySuggested" disabled>Apply selected suggestions</button>
+    </div>
+
+    <div id="status"></div>
+
+    <div id="medResultModal" class="modal-backdrop">
+      <div class="modal-card">
+        <div id="medResultTitle" class="modal-title">Apply Details</div>
+        <div id="medResultBody" class="modal-list"></div>
+        <div class="row" style="margin-bottom: 0">
+          <button type="button" id="closeMedResultModal">Close</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

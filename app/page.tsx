@@ -126,84 +126,40 @@ const patientFacts = [
 ];
 
 function ProductPreview({ type }: { type: Project["preview"] }) {
-  if (type === "concept") {
+  if (type === "typhon") {
     return (
-      <div className="product-preview concept-preview" aria-hidden="true">
-        <div className="preview-bar"><b>CONCEPT MAP BUILDER</b><span>Split · Vertical</span></div>
-        <div className="concept-steps">
-          <span className="done">1 <i>Student</i></span>
-          <span className="active">2 <i>Case intake</i></span>
-          <span>3 <i>Review</i></span>
-          <span>4 <i>Export</i></span>
-        </div>
-        <div className="concept-body">
-          <div className="upload-block"><small>Typhon case log</small><strong>Upload Case PDF</strong><button>Upload</button></div>
-          <div className="flag-list">
-            <span><b>Allergies</b><i>Verify</i></span>
-            <span><b>Edema</b><i>Missing</i></span>
-            <span><b>Medication</b><i>Review</i></span>
-          </div>
-        </div>
-      </div>
+      <figure className="real-product-preview repository-preview">
+        <iframe title="Typhon Case Filler repository popup" src="./previews/typhon-popup.html" />
+        <figcaption>Actual extension popup from the repository</figcaption>
+      </figure>
     );
   }
 
-  if (type === "critical") {
-    return (
-      <div className="product-preview critical-preview" aria-hidden="true">
-        <div className="preview-bar"><b>CRITICAL POINTS MACHINE</b><span>Live web app</span></div>
-        <div className="critical-body">
-          <div><small>Worksheet</small><h4>Formatter</h4><p>Report headers into the form. Your critical points stay yours.</p></div>
-          <div className="critical-upload"><span>ATI REPORT PDF</span><b>Drop report here</b><button>Fill headers from report</button></div>
-        </div>
-      </div>
-    );
-  }
-
-  if (type === "sync") {
-    return (
-      <div className="product-preview sync-preview" aria-hidden="true">
-        <div className="mac-toolbar"><i></i><i></i><i></i><b>Brightspace Sync</b></div>
-        <div className="sync-body">
-          <aside><strong>Overview</strong><span>Courses</span><span>PDF tools</span><span>Settings</span></aside>
-          <div>
-            <small>SYNCED COURSES</small><h4>Everything current.</h4>
-            <div className="course-row"><span>NRBS 4010</span><b>Up to date</b></div>
-            <div className="course-row"><span>NRBS 3410</span><b>3 new files</b></div>
-            <button>Update my classes</button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (type === "study") {
-    return (
-      <div className="product-preview study-preview" aria-hidden="true">
-        <div className="preview-bar"><b>PEDIATRICS NURSING GUIDE</b><span>10 sections · 95 topics</span></div>
-        <div className="study-body">
-          <div className="chapter"><small>CHAPTER 45</small><strong>GI Disorders</strong><span>14 ready · 14 total</span></div>
-          <div className="topics">
-            {["Fluid volume", "Acid-base", "Pyloric stenosis", "Intussusception"].map((topic) => (
-              <span key={topic}>{topic}<i>Content ready</i></span>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const previews = {
+    sync: {
+      src: "./previews/brightspace-sync.png",
+      alt: "Brightspace Sync landing page showing the Mac download and course-file workflow",
+    },
+    concept: {
+      src: "./previews/concept-map-builder.png",
+      alt: "Concept Map Builder showing the Typhon case-log guide and four-step workflow",
+    },
+    critical: {
+      src: "./previews/critical-points.png",
+      alt: "Critical Points Machine showing the worksheet formatter and sample report workflow",
+    },
+    study: {
+      src: "./previews/pediatrics-guide.png",
+      alt: "Pediatrics Nursing Web Guide showing chapter and clinical-topic navigation",
+    },
+  } as const;
+  const preview = previews[type];
 
   return (
-    <div className="product-preview typhon-preview" aria-hidden="true">
-      <div className="preview-bar"><b>TYPHON CASE FILLER</b><span>Connected</span></div>
-      <div className="typhon-body">
-        <small>QUICK START PRESET</small>
-        {["Student role", "Clinical setting", "Procedures", "Medication review"].map((item, index) => (
-          <span key={item}><i className={index < 3 ? "checked" : ""}></i>{item}<b>{index < 3 ? "Selected" : "Review"}</b></span>
-        ))}
-        <button>Apply selected fields</button>
-      </div>
-    </div>
+    <figure className="real-product-preview">
+      <img src={preview.src} alt={preview.alt} />
+      <figcaption>Live interface capture</figcaption>
+    </figure>
   );
 }
 
