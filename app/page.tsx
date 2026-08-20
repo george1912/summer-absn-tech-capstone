@@ -293,14 +293,14 @@ export default function Home() {
         </header>
 
         <div className="project-grid">
-          {portfolio.map((project) => (
+          {portfolio.map((project, index) => (
             <article className={project.featured ? "project-card featured" : "project-card"} key={project.name}>
               <div className="project-screen">
                 <div className="screen-label"><span>Interface preview</span><b>{project.status}</b></div>
                 <ProductPreview type={project.preview} />
               </div>
               <div className="project-copy">
-                <div className="project-meta"><span>{project.eyebrow}</span><i>{project.status}</i></div>
+                <div className="project-meta"><span>{String(index + 1).padStart(2, "0")} / {project.eyebrow}</span><i>{project.status}</i></div>
                 <h3>{project.name}</h3>
                 <div className="problem-solution">
                   <div><b>Problem</b><p>{project.problem}</p></div>

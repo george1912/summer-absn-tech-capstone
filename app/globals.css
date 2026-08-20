@@ -325,16 +325,20 @@ h1 em {
 .section-heading.light > p:last-child { color: #fff; }
 
 .portfolio-section { border-top: 1px solid var(--line); background: #fff; }
-.project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.project-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
 .project-card {
+  min-height: 500px;
   border: 1px solid var(--line-dark);
   border-radius: 5px;
   background: #fff;
   overflow: hidden;
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-columns: minmax(0, 1.08fr) minmax(390px, .92fr);
 }
-.project-screen { padding: 13px; border-bottom: 1px solid var(--line); background: #eef2f5; }
+.project-screen { padding: 13px; border-right: 1px solid var(--line); background: #eef2f5; }
+.project-card:nth-child(even) { grid-template-columns: minmax(390px, .92fr) minmax(0, 1.08fr); }
+.project-card:nth-child(even) .project-screen { order: 2; border-right: 0; border-left: 1px solid var(--line); }
+.project-card:nth-child(even) .project-copy { order: 1; }
 .screen-label {
   min-height: 34px;
   padding: 0 5px;
@@ -345,7 +349,8 @@ h1 em {
 }
 .screen-label b { color: var(--success); }
 .product-preview {
-  min-height: 330px;
+  height: calc(100% - 34px);
+  min-height: 390px;
   border: 1px solid var(--line-dark);
   border-radius: 3px;
   background: #fff;
@@ -520,7 +525,7 @@ h1 em {
 .typhon-body > span b { color: var(--muted); font-size: 8px; text-transform: uppercase; }
 .typhon-body button { margin-top: 6px; }
 
-.project-copy { padding: clamp(26px, 3vw, 42px); display: flex; flex-direction: column; }
+.project-copy { padding: clamp(30px, 4vw, 58px); display: flex; flex-direction: column; }
 .project-meta { color: var(--muted); display: flex; align-items: center; justify-content: space-between; gap: 15px; }
 .project-meta i {
   padding: 6px 8px;
@@ -855,6 +860,12 @@ h1 em {
   .console-grid,
   .console-screen > a { grid-template-columns: 1fr .62fr; }
   .console-grid span:nth-child(2) { display: none; }
+  .project-card,
+  .project-card:nth-child(even) { grid-template-columns: 1fr; }
+  .project-card:nth-child(even) .project-screen,
+  .project-card .project-screen { order: 1; border-left: 0; border-right: 0; border-bottom: 1px solid var(--line); }
+  .project-card:nth-child(even) .project-copy,
+  .project-card .project-copy { order: 2; }
 }
 
 @media (max-width: 860px) {
