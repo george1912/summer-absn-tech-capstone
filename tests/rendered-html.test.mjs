@@ -33,6 +33,11 @@ test("renders the concise nursing workflow portfolio", async () => {
   assert.match(html, /previews\/critical-points\.png/);
   assert.match(html, /previews\/pediatrics-guide\.png/);
   assert.match(html, /previews\/typhon-popup\.html/);
+  assert.match(html, /<title>Nursing Workflow Portfolio<\/title>/);
+  assert.match(html, /property="og:title" content="Nursing Workflow Portfolio"/);
+  assert.match(html, /property="og:image" content="https:\/\/george1912\.github\.io\/summer-absn-tech-capstone\/og\.png"/);
+  assert.match(html, /name="twitter:card" content="summary_large_image"/);
+  assert.match(html, /fox-logo\.png/);
   assert.doesNotMatch(html, /fox-timer|ATI Fox|Prepared for faculty meeting|How they work|Meeting summary/i);
   assert.doesNotMatch(html, /learning accountability|exam result|did not meet the standard/i);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview/);
