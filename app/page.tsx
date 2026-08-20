@@ -18,19 +18,19 @@ type Project = {
 
 const portfolio: Project[] = [
   {
-    name: "Typhon Case Filler",
-    eyebrow: "Workflow / Repeated input",
-    status: "Core prototype",
+    name: "Brightspace Sync",
+    eyebrow: "Information / Course files",
+    status: "Mac app + landing page",
     problem:
-      "Typhon requires the same routine selections across long clinical-log forms.",
+      "Course files are spread across Brightspace folders and formats, with repeated downloading and conversion.",
     solution:
-      "The extension applies user-selected presets, then leaves case-specific entries for review.",
+      "One update pulls current course content into a local folder, skips unchanged files, and makes missing PDFs.",
     limit:
-      "The user verifies every case-specific entry.",
-    preview: "typhon",
-    primaryLabel: "View source archive",
-    primaryHref: "https://github.com/george1912/typhon-case-filler-archive",
-    featured: true,
+      "The app does not summarize or prioritize course content.",
+    preview: "sync",
+    primaryLabel: "Open landing page",
+    primaryHref: "https://george1912.github.io/brightspace-sync/",
+    sourceHref: "https://github.com/george1912/brightspace-sync",
   },
   {
     name: "Concept Map Builder",
@@ -64,19 +64,19 @@ const portfolio: Project[] = [
     featured: true,
   },
   {
-    name: "Brightspace Sync",
-    eyebrow: "Information / Course files",
-    status: "Mac app + landing page",
+    name: "Typhon Case Filler",
+    eyebrow: "Workflow / Repeated input",
+    status: "Core prototype",
     problem:
-      "Course files are spread across Brightspace folders and formats, with repeated downloading and conversion.",
+      "Typhon requires the same routine selections across long clinical-log forms.",
     solution:
-      "One update pulls current course content into a local folder, skips unchanged files, and makes missing PDFs.",
+      "The extension applies user-selected presets, then leaves case-specific entries for review.",
     limit:
-      "The app does not summarize or prioritize course content.",
-    preview: "sync",
-    primaryLabel: "Open landing page",
-    primaryHref: "https://george1912.github.io/brightspace-sync/",
-    sourceHref: "https://github.com/george1912/brightspace-sync",
+      "The user verifies every case-specific entry.",
+    preview: "typhon",
+    primaryLabel: "View source archive",
+    primaryHref: "https://github.com/george1912/typhon-case-filler-archive",
+    featured: true,
   },
   {
     name: "Pediatrics Nursing Guide",
@@ -97,19 +97,24 @@ const portfolio: Project[] = [
 
 const goals = [
   {
-    name: "Typhon input",
-    problem: "Repeated selections in long clinical-log forms.",
-    goal: "Reduce routine data entry while keeping case details visible for review.",
+    name: "Access the files",
+    problem: "Course information is spread across Brightspace folders and file formats.",
+    goal: "Bring current files and PDFs into one organized local folder.",
   },
   {
-    name: "Concept Map + Critical Points",
-    problem: "Required information has to be reformatted into rigid documents.",
-    goal: "Save time formatting documents so the written work can begin sooner.",
+    name: "Format the documents",
+    problem: "Concept maps and critical-points worksheets require repeated formatting.",
+    goal: "Move existing information into the required forms so the written work starts sooner.",
   },
   {
-    name: "File Sync",
-    problem: "Course information is spread across folders and file formats.",
-    goal: "Collect and organize course information in one dependable local folder.",
+    name: "Reduce Typhon input",
+    problem: "Routine clinical-log selections repeat across long forms.",
+    goal: "Apply saved selections, then review the case-specific information.",
+  },
+  {
+    name: "Make time to study",
+    problem: "File handling, formatting, and repeated entry consume study time.",
+    goal: "Use the recovered time for reading, practice questions, and review.",
   },
 ];
 
@@ -211,8 +216,8 @@ export default function Home() {
         <a className="wordmark" href="#opening">Workflow Tools / Faculty Meeting</a>
         <div className="nav-links">
           {[
-            ["Work", "portfolio"],
-            ["Time saved", "goals"],
+            ["Goals", "goals"],
+            ["Projects", "portfolio"],
             ["Demo", "demonstration"],
           ].map(([label, section]) => (
             <a key={section} href={"#" + section}>{label}</a>
@@ -236,39 +241,57 @@ export default function Home() {
             </p>
           </div>
           <div className="hero-actions">
-            <a className="primary-link" href="#portfolio">View the projects <span>↓</span></a>
-            <a className="secondary-link" href="#goals">See the goals</a>
+            <a className="primary-link" href="#goals">Follow the goals <span>↓</span></a>
+            <a className="secondary-link" href="#portfolio">View the projects</a>
           </div>
         </div>
 
-        <div className="clinical-console" aria-label="Selected project portfolio">
+        <div className="clinical-console" aria-label="Chronological goals">
           <header>
-            <div><span className="console-kicker">Project index</span><strong>Problem / solution review</strong></div>
-            <span className="status-chip"><i></i> Ready to open</span>
+            <div><span className="console-kicker">Workflow sequence</span><strong>Friction → study time</strong></div>
+            <span className="status-chip"><i></i> Four steps</span>
           </header>
-          <div className="console-screen">
-            <div className="console-grid"><span>Project</span><span>Problem addressed</span><span>Access</span></div>
-            {portfolio.slice(0, 4).map((project) => (
-              <a href={project.primaryHref} key={project.name} target="_blank" rel="noreferrer">
-                <div><small>{project.eyebrow.split(" / ")[0]}</small><strong>{project.name}</strong></div>
-                <span>{project.problem}</span>
-                <b>{project.primaryLabel} ↗</b>
-              </a>
+          <div className="console-screen goal-console">
+            {goals.map((item, index) => (
+              <div className="console-goal" key={item.name}>
+                <b>{String(index + 1).padStart(2, "0")}</b>
+                <div><strong>{item.name}</strong><span>{item.goal}</span></div>
+              </div>
             ))}
           </div>
-          <footer><span>Direct access to apps, pages, and source</span><b>04 shown</b></footer>
+          <footer><span>One sequence: access, format, enter, study</span><b>01 → 04</b></footer>
         </div>
 
         <div className="hero-proof">
-          <span><strong>Input</strong> Typhon</span>
-          <span><strong>Formatting</strong> Concept maps + critical points</span>
           <span><strong>Information</strong> File sync + study guides</span>
+          <span><strong>Formatting</strong> Concept maps + critical points</span>
+          <span><strong>Input</strong> Typhon</span>
+        </div>
+      </section>
+
+      <section className="section evolution-section" id="goals">
+        <header className="section-heading">
+          <p className="section-index">02 / Goals</p>
+          <h2>Reduce friction.<br />Recover time.</h2>
+          <p>
+            Each step removes a repeated task. Together, they protect time for study.
+          </p>
+        </header>
+
+        <div className="goal-flow">
+          {goals.map((item, index) => (
+            <article key={item.name}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <div><h3>{item.name}</h3><p>{item.problem}</p></div>
+              <strong>{item.goal}</strong>
+            </article>
+          ))}
         </div>
       </section>
 
       <section className="section portfolio-section" id="portfolio">
         <header className="section-heading">
-          <p className="section-index">02 / Work</p>
+          <p className="section-index">03 / Projects</p>
           <h2>Problem.<br />Solved.</h2>
           <p>
             The screen previews match the real tools. The blue button opens the
@@ -304,28 +327,6 @@ export default function Home() {
             </article>
           ))}
         </div>
-      </section>
-
-      <section className="section evolution-section" id="goals">
-        <header className="section-heading">
-          <p className="section-index">03 / Time saved</p>
-          <h2>Recurring tasks.<br />Specific goals.</h2>
-          <p>
-            The goal is simple: spend less time moving and formatting information.
-          </p>
-        </header>
-
-        <div className="goal-grid">
-          {goals.map((item, index) => (
-            <article key={item.name}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <h3>{item.name}</h3>
-              <p>{item.problem}</p>
-              <strong>{item.goal}</strong>
-            </article>
-          ))}
-        </div>
-        <p className="time-result">Saved time made room for study tools. The next step was connecting each tool to a clear page where it can be opened directly.</p>
       </section>
 
       <section className="section demo-section" id="demonstration">

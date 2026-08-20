@@ -22,7 +22,9 @@ test("renders the concise nursing workflow portfolio", async () => {
   assert.match(html, /Concept Map Builder/);
   assert.match(html, /Critical Points Machine/);
   assert.match(html, /Typhon Case Filler/);
-  assert.match(html, /Recurring tasks/);
+  assert.match(html, /Reduce friction/);
+  assert.match(html, /Access the files/);
+  assert.match(html, /Make time to study/);
   assert.match(html, /organized draft/);
   assert.doesNotMatch(html, /fox-timer|ATI Fox|Prepared for faculty meeting|How they work|Meeting summary/i);
   assert.doesNotMatch(html, /learning accountability|exam result|did not meet the standard/i);

@@ -5,9 +5,9 @@ shows the problem, the solution, and a direct link.
 
 ## The story
 
-1. Opening — what time the tools save
-2. Work — five direct problem-and-solution project views
-3. Time saved — goals for Typhon input, document formatting, and file sync
+1. Opening — the time-saving sequence
+2. Goals — file access, document formatting, Typhon input, then study time
+3. Projects — five direct problem-and-solution project views
 4. Demo — a short fictional-data organizer
 
 The clinical demonstration is fictional and contains no protected health
