@@ -97,22 +97,22 @@ const portfolio: Project[] = [
 
 const goals = [
   {
-    name: "Access the files",
+    name: "Access files",
     problem: "Course information is spread across Brightspace folders and file formats.",
     goal: "Bring current files and PDFs into one organized local folder.",
   },
   {
-    name: "Format the documents",
+    name: "Reduce formatting time",
     problem: "Concept maps and critical-points worksheets require repeated formatting.",
     goal: "Move existing information into the required forms so the written work starts sooner.",
   },
   {
-    name: "Reduce Typhon input",
+    name: "Reduce input time",
     problem: "Routine clinical-log selections repeat across long forms.",
     goal: "Apply saved selections, then review the case-specific information.",
   },
   {
-    name: "Make time to study",
+    name: "Study time",
     problem: "File handling, formatting, and repeated entry consume study time.",
     goal: "Use the recovered time for reading, practice questions, and review.",
   },
@@ -228,18 +228,11 @@ export default function Home() {
       <section className="hero clinical-hero" id="opening">
         <div className="hero-copy">
           <p className="eyebrow"><span>01</span> Nursing workflow tools</p>
-          <h1>Repeated work.<br /><em>Less time.</em></h1>
+          <h1>Workflow tools.<br /><em>Built for nursing.</em></h1>
           <p className="hero-lede">
-            Five tools that reduce repeated input, document formatting, and
-            course-file organization.
+            Five tools for accessing files, formatting required documents,
+            entering clinical logs, and organizing study material.
           </p>
-          <div className="meeting-context">
-            <span>Time saved</span>
-            <p>
-              Time saved on repetitive work created room to build study tools,
-              then connect them through clear landing pages.
-            </p>
-          </div>
           <div className="hero-actions">
             <a className="primary-link" href="#goals">Follow the goals <span>↓</span></a>
             <a className="secondary-link" href="#portfolio">View the projects</a>
@@ -248,7 +241,7 @@ export default function Home() {
 
         <div className="clinical-console" aria-label="Chronological goals">
           <header>
-            <div><span className="console-kicker">Workflow sequence</span><strong>Friction → study time</strong></div>
+            <div><span className="console-kicker">The sequence</span><strong>Files → formatting → input → study</strong></div>
             <span className="status-chip"><i></i> Four steps</span>
           </header>
           <div className="console-screen goal-console">
@@ -259,7 +252,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <footer><span>One sequence: access, format, enter, study</span><b>01 → 04</b></footer>
+          <footer><span>Three workflow changes</span><b>One outcome</b></footer>
         </div>
 
         <div className="hero-proof">
@@ -272,9 +265,9 @@ export default function Home() {
       <section className="section evolution-section" id="goals">
         <header className="section-heading">
           <p className="section-index">02 / Goals</p>
-          <h2>Reduce friction.<br />Recover time.</h2>
+          <h2>Where time<br />is saved.</h2>
           <p>
-            Each step removes a repeated task. Together, they protect time for study.
+            Three workflow reductions lead to one outcome: more time to study.
           </p>
         </header>
 
