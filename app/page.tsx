@@ -295,26 +295,31 @@ export default function Home() {
         <div className="project-grid">
           {portfolio.map((project, index) => (
             <article className={project.featured ? "project-card featured" : "project-card"} key={project.name}>
-              <div className="project-screen">
-                <div className="screen-label"><span>Interface preview</span><b>{project.status}</b></div>
-                <ProductPreview type={project.preview} />
-              </div>
-              <div className="project-copy">
-                <div className="project-meta"><span>{String(index + 1).padStart(2, "0")} / {project.eyebrow}</span><i>{project.status}</i></div>
-                <h3>{project.name}</h3>
-                <div className="problem-solution">
-                  <div><b>Problem</b><p>{project.problem}</p></div>
-                  <div><b>Solution</b><p>{project.solution}</p></div>
+              <header className="project-heading">
+                <b>{String(index + 1).padStart(2, "0")}</b>
+                <div><span>{project.eyebrow}</span><h3>{project.name}</h3></div>
+                <i>{project.status}</i>
+              </header>
+              <div className="project-body">
+                <div className="project-screen">
+                  <div className="screen-label"><span>Interface preview</span><b>{project.status}</b></div>
+                  <ProductPreview type={project.preview} />
                 </div>
-                <div className="project-actions">
-                  <a className="launch-button" href={project.primaryHref} target="_blank" rel="noreferrer">
-                    {project.primaryLabel}<span>↗</span>
-                  </a>
-                  {project.sourceHref && (
-                    <a className="source-button" href={project.sourceHref} target="_blank" rel="noreferrer">
-                      View source
+                <div className="project-copy">
+                  <div className="problem-solution">
+                    <div><b>Problem</b><p>{project.problem}</p></div>
+                    <div><b>Solution</b><p>{project.solution}</p></div>
+                  </div>
+                  <div className="project-actions">
+                    <a className="launch-button" href={project.primaryHref} target="_blank" rel="noreferrer">
+                      {project.primaryLabel}<span>↗</span>
                     </a>
-                  )}
+                    {project.sourceHref && (
+                      <a className="source-button" href={project.sourceHref} target="_blank" rel="noreferrer">
+                        View source
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
             </article>
