@@ -64,15 +64,15 @@ const portfolio: Project[] = [
     featured: true,
   },
   {
-    name: "Typhon Case Filler",
+    name: "Typhon Form Filler",
     eyebrow: "Workflow / Repeated input",
     status: "Core prototype",
     problem:
       "Typhon requires the same routine selections across long clinical-log forms.",
     solution:
-      "The extension applies user-selected presets, then leaves case-specific entries for review.",
+      "The extension applies the user's saved routine selections to matching fields. It does not generate information; it only makes repeated input faster.",
     limit:
-      "The user verifies every case-specific entry.",
+      "Case-specific information stays manual and is reviewed by the user.",
     preview: "typhon",
     primaryLabel: "View source archive",
     primaryHref: "https://github.com/george1912/typhon-case-filler-archive",
@@ -109,7 +109,7 @@ const goals = [
   {
     name: "Reduce input time",
     problem: "Routine clinical-log selections repeat across long forms.",
-    goal: "Apply saved selections, then review the case-specific information.",
+    goal: "Reuse saved routine selections, then enter and review case-specific information manually.",
   },
   {
     name: "Study time",
@@ -129,8 +129,8 @@ function ProductPreview({ type }: { type: Project["preview"] }) {
   if (type === "typhon") {
     return (
       <figure className="real-product-preview repository-preview">
-        <iframe title="Typhon Case Filler repository popup" src="./previews/typhon-popup.html" />
-        <figcaption>Actual extension popup from the repository</figcaption>
+        <iframe title="Typhon Form Filler repository popup" src="./previews/typhon-popup.html" />
+        <figcaption>Form-filling extension interface</figcaption>
       </figure>
     );
   }

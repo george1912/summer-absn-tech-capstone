@@ -21,7 +21,8 @@ test("renders the concise nursing workflow portfolio", async () => {
   assert.match(html, /Solution/);
   assert.match(html, /Concept Map Builder/);
   assert.match(html, /Critical Points Machine/);
-  assert.match(html, /Typhon Case Filler/);
+  assert.match(html, /Typhon Form Filler/);
+  assert.match(html, /does not generate information; it only makes repeated input faster/i);
   assert.match(html, /Where time/);
   assert.match(html, /Access files/);
   assert.match(html, /Reduce formatting time/);
@@ -41,4 +42,5 @@ test("renders the concise nursing workflow portfolio", async () => {
   assert.doesNotMatch(html, /fox-timer|ATI Fox|Prepared for faculty meeting|How they work|Meeting summary/i);
   assert.doesNotMatch(html, /learning accountability|exam result|did not meet the standard/i);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview/);
+  assert.doesNotMatch(html, /Typhon Case Filler|AI Medication Suggestion/);
 });
