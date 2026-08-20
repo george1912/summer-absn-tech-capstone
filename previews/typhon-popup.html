@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Typhon Case Filler</title>
+    <title>Typhon Form Filler</title>
     <style>
       body {
         font-family: system-ui, sans-serif;
@@ -125,6 +125,15 @@
         font-weight: 700;
         margin-bottom: 6px;
       }
+      .boundary-note {
+        padding: 10px;
+        border: 1px solid #b6d1ce;
+        border-radius: 6px;
+        background: #eef8f6;
+        color: #1d5f59;
+        font-size: 12px;
+        line-height: 1.4;
+      }
     </style>
   </head>
   <body>
@@ -140,6 +149,9 @@
     </div>
     <div class="row">
       <button type="button" id="applyProceduresPreset">Apply Procedures/Skills Preset</button>
+    </div>
+    <div class="boundary-note">
+      Applies saved selections to matching fields. It does not generate clinical information.
     </div>
     <div class="panel">
       <div class="panel-title">Student Profile (saved)</div>
@@ -166,52 +178,6 @@
       </div>
     </div>
 
-    <div class="row"><strong style="font-size: 13px">AI Medication Suggestion</strong></div>
-    <div class="row">
-      <input type="text" id="aiEndpoint" placeholder="AI endpoint (e.g. https://your-api.example.com/suggest-meds)" />
-    </div>
-    <div class="hint">Use your backend endpoint, or OpenAI direct: https://api.openai.com/v1/responses</div>
-    <div class="row">
-      <input type="password" id="aiApiKey" placeholder="Optional API key (sent as Authorization Bearer and x-api-key)" />
-      <button type="button" id="toggleApiKeyVisibility" style="max-width: 96px">Show</button>
-    </div>
-    <div class="row">
-      <button type="button" id="connectAi">Test AI endpoint</button>
-    </div>
-    <div class="row" style="display: block; margin-top: -4px">
-      <div id="aiBadge" class="status-pill ai-disconnected">AI not connected</div>
-      <div id="aiSubtext" class="status-subtext">Enter endpoint and test connection.</div>
-    </div>
-    <div class="row">
-      <textarea
-        id="clinicalNote"
-        rows="5"
-        placeholder="Paste a clinical story OR a med list (one med per line)"
-      ></textarea>
-    </div>
-    <div class="row">
-      <button type="button" id="clearClinicalNote">Clear text</button>
-    </div>
-    <div class="row">
-      <button type="button" id="suggestMeds">Suggest meds</button>
-    </div>
-
-    <div id="suggestions">(no suggestions yet)</div>
-
-    <div class="row">
-      <button type="button" id="applySuggested" disabled>Apply selected suggestions</button>
-    </div>
-
     <div id="status"></div>
-
-    <div id="medResultModal" class="modal-backdrop">
-      <div class="modal-card">
-        <div id="medResultTitle" class="modal-title">Apply Details</div>
-        <div id="medResultBody" class="modal-list"></div>
-        <div class="row" style="margin-bottom: 0">
-          <button type="button" id="closeMedResultModal">Close</button>
-        </div>
-      </div>
-    </div>
   </body>
 </html>
