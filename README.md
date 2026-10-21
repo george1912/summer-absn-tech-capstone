@@ -1,14 +1,13 @@
 # Nursing Workflow Tools
 
-A concise meeting portfolio for five nursing-school workflow tools. Each project
-shows the problem, the solution, and a direct link.
+A concise meeting portfolio for six nursing-school workflow tools. Each project
+shows the problem, the tool, and a direct link.
 
 ## The story
 
-1. Opening — the time-saving sequence
-2. Goals — file access, document formatting, Typhon input, then study time
-3. Projects — five direct problem-and-solution project views
-4. Demo — a short fictional-data organizer
+1. Opening — four concise workflow goals
+2. Tools — six direct problem-and-tool views
+3. Demo — a short fictional-data organizer
 
 The clinical demonstration is fictional and contains no protected health
 information. The product descriptions are grounded in the linked repositories
@@ -35,7 +34,6 @@ Then open the local address printed in the terminal.
 
 ## Content notes
 
-- Typhon appears first as the core workflow project.
 - Concept Map and Critical Points focus on saving document-formatting time.
 - Brightspace Sync focuses on collecting and organizing course information.
-- Empty or confusing archive repositories are not presented as public evidence.
+- Pediatrics Guide and Fox Timer support study structure and focus.

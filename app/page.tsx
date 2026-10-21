@@ -8,25 +8,19 @@ type Project = {
   status: string;
   problem: string;
   solution: string;
-  limit: string;
-  preview: "concept" | "critical" | "sync" | "study" | "typhon";
+  preview: "concept" | "critical" | "sync" | "study" | "typhon" | "fox";
   primaryLabel: string;
   primaryHref: string;
   sourceHref?: string;
-  featured?: boolean;
 };
 
 const portfolio: Project[] = [
   {
     name: "Brightspace Sync",
-    eyebrow: "Information / Course files",
-    status: "Mac app + landing page",
-    problem:
-      "Course files are spread across Brightspace folders and formats, with repeated downloading and conversion.",
-    solution:
-      "One update pulls current course content into a local folder, skips unchanged files, and makes missing PDFs.",
-    limit:
-      "The app does not summarize or prioritize course content.",
+    eyebrow: "Course files",
+    status: "Mac app",
+    problem: "Course files are scattered across folders and formats.",
+    solution: "Syncs current files locally and creates missing PDFs.",
     preview: "sync",
     primaryLabel: "Open landing page",
     primaryHref: "https://george1912.github.io/brightspace-sync/",
@@ -34,14 +28,10 @@ const portfolio: Project[] = [
   },
   {
     name: "Concept Map Builder",
-    eyebrow: "Workflow / Clinical documentation",
-    status: "Live web app",
-    problem:
-      "The same case information has to be moved into a rigid concept-map PDF, then reformatted field by field.",
-    solution:
-      "Upload a Typhon case log. The app fills a draft, marks missing or uncertain fields, and exports the reviewed map.",
-    limit:
-      "Every field stays editable. Nursing priorities can be left blank for the student.",
+    eyebrow: "Clinical documents",
+    status: "Web app",
+    problem: "Concept-map formatting delays the written work.",
+    solution: "Moves a Typhon case log into an editable draft and flags missing fields.",
     preview: "concept",
     primaryLabel: "Try the live app",
     primaryHref: "https://george1912.github.io/concept-map-builder/",
@@ -49,72 +39,64 @@ const portfolio: Project[] = [
   },
   {
     name: "Critical Points Machine",
-    eyebrow: "Workflow / ATI remediation",
-    status: "Live web app",
-    problem:
-      "ATI report headings must be copied into three separate remediation worksheets before the written work begins.",
-    solution:
-      "Upload the ATI report. The app formats Category, Sub Concept, and Content into all three worksheets.",
-    limit:
-      "The student writes every critical point.",
+    eyebrow: "ATI remediation",
+    status: "Web app",
+    problem: "ATI headings must be copied into three worksheets.",
+    solution: "Formats the headings; the student writes every critical point.",
     preview: "critical",
     primaryLabel: "Try the live app",
     primaryHref: "https://george1912.github.io/critical-points-machine/",
     sourceHref: "https://github.com/george1912/critical-points-machine",
-    featured: true,
   },
   {
     name: "Typhon Form Filler",
-    eyebrow: "Workflow / Repeated input",
-    status: "Core prototype",
-    problem:
-      "Typhon requires the same routine selections across long clinical-log forms.",
-    solution:
-      "The extension applies the user's saved routine selections to matching fields. It does not generate information; it only makes repeated input faster.",
-    limit:
-      "Case-specific information stays manual and is reviewed by the user.",
+    eyebrow: "Clinical logs",
+    status: "Prototype",
+    problem: "Routine selections repeat across long Typhon forms.",
+    solution: "Reuses saved selections to speed entry. It never generates clinical information.",
     preview: "typhon",
     primaryLabel: "View source archive",
     primaryHref: "https://github.com/george1912/typhon-case-filler-archive",
-    featured: true,
   },
   {
     name: "Pediatrics Nursing Guide",
-    eyebrow: "Information / Study structure",
-    status: "Live study guide",
-    problem:
-      "A long cumulative pediatric review outline is difficult to scan and use as a focused reading tool.",
-    solution:
-      "The guide organizes the material into 10 sections and 95 clinical topics with a direct reading view.",
-    limit:
-      "It structures the source material; it does not test mastery.",
+    eyebrow: "Study guide",
+    status: "Web guide",
+    problem: "A long pediatric review outline is hard to scan.",
+    solution: "Organizes it into 10 sections and 95 topics for direct review.",
     preview: "study",
     primaryLabel: "Try the live guide",
     primaryHref: "https://george1912.github.io/pediatrics-nursing-web-guide/",
     sourceHref: "https://github.com/george1912/pediatrics-nursing-web-guide",
+  },
+  {
+    name: "Fox Timer",
+    eyebrow: "Study focus / ATI",
+    status: "Chrome extension",
+    problem: "ATI pages can time out while you read or take notes.",
+    solution: "Keeps the session awake for a set time and shows study tips.",
+    preview: "fox",
+    primaryLabel: "Open landing page",
+    primaryHref: "https://george1912.github.io/fox-timer/",
   },
 ];
 
 const goals = [
   {
     name: "Access files",
-    problem: "Course information is spread across Brightspace folders and file formats.",
-    goal: "Bring current files and PDFs into one organized local folder.",
+    goal: "Keep course files in one place.",
   },
   {
-    name: "Reduce formatting time",
-    problem: "Concept maps and critical-points worksheets require repeated formatting.",
-    goal: "Move existing information into the required forms so the written work starts sooner.",
+    name: "Format documents",
+    goal: "Start from an editable draft.",
   },
   {
-    name: "Reduce input time",
-    problem: "Routine clinical-log selections repeat across long forms.",
-    goal: "Reuse saved routine selections, then enter and review case-specific information manually.",
+    name: "Reduce input",
+    goal: "Reuse routine selections.",
   },
   {
-    name: "Study time",
-    problem: "File handling, formatting, and repeated entry consume study time.",
-    goal: "Use the recovered time for reading, practice questions, and review.",
+    name: "Protect study time",
+    goal: "Keep attention on learning.",
   },
 ];
 
@@ -131,6 +113,19 @@ function ProductPreview({ type }: { type: Project["preview"] }) {
       <figure className="real-product-preview repository-preview">
         <iframe title="Typhon Form Filler repository popup" src="./previews/typhon-popup.html" />
         <figcaption>Form-filling extension interface</figcaption>
+      </figure>
+    );
+  }
+
+  if (type === "fox") {
+    return (
+      <figure className="real-product-preview live-site-preview">
+        <iframe
+          title="Fox Timer live landing page"
+          src="https://george1912.github.io/fox-timer/"
+          loading="lazy"
+        />
+        <figcaption>Live landing page</figcaption>
       </figure>
     );
   }
@@ -172,8 +167,7 @@ export default function Home() {
         <a className="wordmark" href="#opening">Workflow Tools / Faculty Meeting</a>
         <div className="nav-links">
           {[
-            ["Goals", "goals"],
-            ["Projects", "portfolio"],
+            ["Tools", "portfolio"],
             ["Demo", "demonstration"],
           ].map(([label, section]) => (
             <a key={section} href={"#" + section}>{label}</a>
@@ -183,21 +177,17 @@ export default function Home() {
 
       <section className="hero clinical-hero" id="opening">
         <div className="hero-copy">
-          <p className="eyebrow"><span>01</span> Nursing workflow tools</p>
-          <h1>Workflow tools.<br /><em>Built for nursing.</em></h1>
-          <p className="hero-lede">
-            Five tools for accessing files, formatting required documents,
-            entering clinical logs, and organizing study material.
-          </p>
+          <p className="eyebrow"><span>01</span> Nursing workflow portfolio</p>
+          <h1>Small tools.<br /><em>Less friction.</em></h1>
+          <p className="hero-lede">Six tools for files, forms, clinical input, and study focus.</p>
           <div className="hero-actions">
-            <a className="primary-link" href="#goals">Follow the goals <span>↓</span></a>
-            <a className="secondary-link" href="#portfolio">View the projects</a>
+            <a className="primary-link" href="#portfolio">View the tools <span>↓</span></a>
           </div>
         </div>
 
         <div className="clinical-console" aria-label="Chronological goals">
           <header>
-            <div><span className="console-kicker">The sequence</span><strong>Files → formatting → input → study</strong></div>
+            <div><span className="console-kicker">The goal</span><strong>Files → forms → input → focus</strong></div>
             <span className="status-chip"><i></i> Four steps</span>
           </header>
           <div className="console-screen goal-console">
@@ -208,49 +198,20 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <footer><span>Three workflow changes</span><b>One outcome</b></footer>
-        </div>
-
-        <div className="hero-proof">
-          <span><strong>Information</strong> File sync + study guides</span>
-          <span><strong>Formatting</strong> Concept maps + critical points</span>
-          <span><strong>Input</strong> Typhon</span>
-        </div>
-      </section>
-
-      <section className="section evolution-section" id="goals">
-        <header className="section-heading">
-          <p className="section-index">02 / Goals</p>
-          <h2>Where time<br />is saved.</h2>
-          <p>
-            Three workflow reductions lead to one outcome: more time to study.
-          </p>
-        </header>
-
-        <div className="goal-flow">
-          {goals.map((item, index) => (
-            <article key={item.name}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <div><h3>{item.name}</h3><p>{item.problem}</p></div>
-              <strong>{item.goal}</strong>
-            </article>
-          ))}
+          <footer><span>Six tools</span><b>More time to study</b></footer>
         </div>
       </section>
 
       <section className="section portfolio-section" id="portfolio">
         <header className="section-heading">
-          <p className="section-index">03 / Projects</p>
-          <h2>Problem.<br />Solved.</h2>
-          <p>
-            The screen previews match the real tools. The blue button opens the
-            live app or its faculty-facing landing page.
-          </p>
+          <p className="section-index">02 / Tools</p>
+          <h2>Problem.<br />Tool.</h2>
+          <p>Open a live tool or its source.</p>
         </header>
 
         <div className="project-grid">
           {portfolio.map((project, index) => (
-            <article className={project.featured ? "project-card featured" : "project-card"} key={project.name}>
+            <article className="project-card" key={project.name}>
               <header className="project-heading">
                 <b>{String(index + 1).padStart(2, "0")}</b>
                 <div><span>{project.eyebrow}</span><h3>{project.name}</h3></div>
@@ -264,7 +225,7 @@ export default function Home() {
                 <div className="project-copy">
                   <div className="problem-solution">
                     <div><b>Problem</b><p>{project.problem}</p></div>
-                    <div><b>Solution</b><p>{project.solution}</p></div>
+                    <div><b>Tool</b><p>{project.solution}</p></div>
                   </div>
                   <div className="project-actions">
                     <a className="launch-button" href={project.primaryHref} target="_blank" rel="noreferrer">
@@ -285,11 +246,9 @@ export default function Home() {
 
       <section className="section demo-section" id="demonstration">
         <header className="section-heading light">
-          <p className="section-index">04 / Demo</p>
+          <p className="section-index">03 / Demo</p>
           <h2>Input →<br />organized draft.</h2>
-          <p>
-            The tool groups supplied facts. The student decides what they mean.
-          </p>
+          <p>Facts are grouped. Judgment stays with the student.</p>
         </header>
 
         <div className="demo-shell">
@@ -335,22 +294,12 @@ export default function Home() {
           </div>
           <footer className="demo-stop">
             <span>STOP</span>
-            <div><strong>Organization ends here.</strong><p>Judgment stays with the student.</p></div>
+            <div><strong>Organization ends here.</strong></div>
             {organized && <button onClick={() => setOrganized(false)}>Reset</button>}
           </footer>
         </div>
       </section>
-      <section className="section final-section">
-        <div className="final-actions">
-          <div><span className="section-index">Direct access</span><h3>Open the tools.</h3></div>
-          <div>
-            <a href="https://github.com/george1912/typhon-case-filler-archive" target="_blank" rel="noreferrer">Typhon source ↗</a>
-            <a href="https://george1912.github.io/concept-map-builder/" target="_blank" rel="noreferrer">Concept Map Builder ↗</a>
-            <a href="https://george1912.github.io/critical-points-machine/" target="_blank" rel="noreferrer">Critical Points ↗</a>
-            <a href="https://george1912.github.io/brightspace-sync/" target="_blank" rel="noreferrer">Brightspace Sync ↗</a>
-          </div>
-        </div>
-
+      <section className="section final-section compact-final">
         <footer className="site-footer">
           <p>Faculty Meeting</p>
           <a href="#opening">Return to top ↑</a>

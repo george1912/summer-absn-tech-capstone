@@ -388,7 +388,8 @@ h1 em {
   letter-spacing: .06em;
   text-transform: uppercase;
 }
-.repository-preview iframe { width: 100%; height: 100%; border: 0; background: #fff; pointer-events: none; }
+.repository-preview iframe,
+.live-site-preview iframe { width: 100%; height: 100%; border: 0; background: #fff; pointer-events: none; }
 .screen-label {
   min-height: 34px;
   padding: 0 5px;
@@ -845,6 +846,8 @@ h1 em {
 .demo-stop button { margin-left: auto; padding: 10px 12px; border: 1px solid var(--line-dark); background: #fff; cursor: pointer; font-size: 8px; font-weight: 700; text-transform: uppercase; }
 
 .final-section { background: #fff; padding-top: clamp(55px, 6vw, 85px); padding-bottom: 30px; }
+.compact-final { padding-top: 0; }
+.compact-final .site-footer { margin-top: 0; }
 .reflection-section { background: #fff; padding-bottom: 40px; }
 .reflection-brief { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .reflection-brief article { min-height: 380px; padding: clamp(26px, 3vw, 42px); border: 1px solid var(--line-dark); display: flex; flex-direction: column; }

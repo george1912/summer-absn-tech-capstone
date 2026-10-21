@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 const siteUrl = "https://george1912.github.io/summer-absn-tech-capstone/";
 const title = "Nursing Workflow Portfolio";
 const description =
-  "A portfolio of small tools that reduce friction in course files, clinical forms, and study workflows.";
+  "Six small tools for course files, clinical forms, repeated input, and study focus.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
