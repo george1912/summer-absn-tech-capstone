@@ -24,7 +24,11 @@ test("renders the concise nursing workflow portfolio", async () => {
   assert.match(html, /Typhon Form Filler/);
   assert.match(html, /never generates clinical information/i);
   assert.match(html, /Pediatrics Nursing Guide/);
+  assert.match(html, /Community Prep/);
+  assert.match(html, /270 cards across 13 topics/);
+  assert.match(html, /https:\/\/george1912\.github\.io\/community-prep\//);
   assert.match(html, /Fox Timer/);
+  assert.match(html, /ATI Study Buddy/);
   assert.match(html, /Access files/);
   assert.match(html, /Format documents/);
   assert.match(html, /Reduce input/);
@@ -36,7 +40,7 @@ test("renders the concise nursing workflow portfolio", async () => {
   assert.match(html, /previews\/pediatrics-guide\.png/);
   assert.match(html, /previews\/typhon-popup\.html/);
   assert.match(html, /https:\/\/george1912\.github\.io\/fox-timer\//);
-  assert.equal((html.match(/class="project-card"/g) ?? []).length, 6);
+  assert.equal((html.match(/class="project-card"/g) ?? []).length, 7);
   assert.match(html, /<title>Nursing Workflow Portfolio<\/title>/);
   assert.match(html, /property="og:title" content="Nursing Workflow Portfolio"/);
   assert.match(html, /property="og:image" content="https:\/\/george1912\.github\.io\/summer-absn-tech-capstone\/og\.png"/);

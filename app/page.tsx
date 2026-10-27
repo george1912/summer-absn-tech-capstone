@@ -8,7 +8,7 @@ type Project = {
   status: string;
   problem: string;
   solution: string;
-  preview: "concept" | "critical" | "sync" | "study" | "typhon" | "fox";
+  preview: "concept" | "critical" | "sync" | "study" | "typhon" | "community" | "fox";
   primaryLabel: string;
   primaryHref: string;
   sourceHref?: string;
@@ -70,11 +70,22 @@ const portfolio: Project[] = [
     sourceHref: "https://github.com/george1912/pediatrics-nursing-web-guide",
   },
   {
+    name: "Community Prep",
+    eyebrow: "Active recall",
+    status: "Flashcard app",
+    problem: "A large community-nursing review deck is difficult to practice through active recall.",
+    solution: "Turns 270 cards across 13 topics into questions with rationales, review marks, and blueprint-guided practice.",
+    preview: "community",
+    primaryLabel: "Open flashcard app",
+    primaryHref: "https://george1912.github.io/community-prep/",
+    sourceHref: "https://github.com/george1912/community-prep",
+  },
+  {
     name: "Fox Timer",
-    eyebrow: "Study focus / ATI",
+    eyebrow: "ATI Study Buddy",
     status: "Chrome extension",
     problem: "ATI pages can time out while you read or take notes.",
-    solution: "Keeps the session awake for a set time and shows study tips.",
+    solution: "Keeps the session awake for a set time and gives the ATI Study Buddy a visible, supportive presence.",
     preview: "fox",
     primaryLabel: "Open landing page",
     primaryHref: "https://george1912.github.io/fox-timer/",
@@ -117,15 +128,26 @@ function ProductPreview({ type }: { type: Project["preview"] }) {
     );
   }
 
-  if (type === "fox") {
+  if (type === "fox" || type === "community") {
+    const livePreview = type === "fox"
+      ? {
+          title: "Fox Timer live landing page",
+          src: "https://george1912.github.io/fox-timer/",
+          caption: "Live landing page",
+        }
+      : {
+          title: "Community Prep live flashcard app",
+          src: "https://george1912.github.io/community-prep/",
+          caption: "Live flashcard app",
+        };
     return (
       <figure className="real-product-preview live-site-preview">
         <iframe
-          title="Fox Timer live landing page"
-          src="https://george1912.github.io/fox-timer/"
+          title={livePreview.title}
+          src={livePreview.src}
           loading="lazy"
         />
-        <figcaption>Live landing page</figcaption>
+        <figcaption>{livePreview.caption}</figcaption>
       </figure>
     );
   }
@@ -179,7 +201,7 @@ export default function Home() {
         <div className="hero-copy">
           <p className="eyebrow"><span>01</span> Nursing workflow portfolio</p>
           <h1>Small tools.<br /><em>Less friction.</em></h1>
-          <p className="hero-lede">Six tools for files, forms, clinical input, and study focus.</p>
+          <p className="hero-lede">Seven tools for files, forms, clinical input, active recall, and study focus.</p>
           <div className="hero-actions">
             <a className="primary-link" href="#portfolio">View the tools <span>↓</span></a>
           </div>
@@ -198,7 +220,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <footer><span>Six tools</span><b>More time to study</b></footer>
+          <footer><span>Seven tools</span><b>More time to study</b></footer>
         </div>
       </section>
 

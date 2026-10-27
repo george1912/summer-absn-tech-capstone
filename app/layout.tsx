@@ -18,7 +18,7 @@ const siteUrl = customDomain
   : "https://george1912.github.io/summer-absn-tech-capstone/";
 const title = "Nursing Workflow Portfolio";
 const description =
-  "Six small tools for course files, clinical forms, repeated input, and study focus.";
+  "Seven small tools for course files, clinical forms, repeated input, active recall, and study focus.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

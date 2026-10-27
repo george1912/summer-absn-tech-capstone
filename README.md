@@ -1,12 +1,12 @@
 # Nursing Workflow Tools
 
-A concise meeting portfolio for six nursing-school workflow tools. Each project
+A concise meeting portfolio for seven nursing-school workflow tools. Each project
 shows the problem, the tool, and a direct link.
 
 ## The story
 
 1. Opening — four concise workflow goals
-2. Tools — six direct problem-and-tool views
+2. Tools — seven direct problem-and-tool views
 3. Demo — a short fictional-data organizer
 
 The clinical demonstration is fictional and contains no protected health
@@ -46,4 +46,4 @@ repository URL at `/summer-absn-tech-capstone/`.
 
 - Concept Map and Critical Points focus on saving document-formatting time.
 - Brightspace Sync focuses on collecting and organizing course information.
-- Pediatrics Guide and Fox Timer support study structure and focus.
+- Pediatrics Guide, Community Prep, and Fox Timer support study structure, active recall, and focus.

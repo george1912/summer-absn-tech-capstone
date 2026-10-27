@@ -1,7 +1,7 @@
 {
   "name": "Nursing Workflow Portfolio",
   "short_name": "Workflow Portfolio",
-  "description": "Six small tools for course files, clinical forms, repeated input, and study focus.",
+  "description": "Seven small tools for course files, clinical forms, repeated input, active recall, and study focus.",
   "start_url": "/summer-absn-tech-capstone/",
   "scope": "/summer-absn-tech-capstone/",
   "display": "standalone",
