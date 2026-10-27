@@ -2,14 +2,14 @@
   "name": "Nursing Workflow Portfolio",
   "short_name": "Workflow Portfolio",
   "description": "Six small tools for course files, clinical forms, repeated input, and study focus.",
-  "start_url": "/summer-absn-tech-capstone/",
-  "scope": "/summer-absn-tech-capstone/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#f7f5ef",
   "theme_color": "#102338",
   "icons": [
     {
-      "src": "/summer-absn-tech-capstone/fox-logo.png",
+      "src": "/fox-logo.png",
       "sizes": "1254x1254",
       "type": "image/png",
       "purpose": "any"
