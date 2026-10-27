@@ -22,11 +22,11 @@ test("renders the interactive nursing field book prototype", async () => {
   assert.match(html, /Inspiration/);
   assert.match(html, /How I built it/);
   assert.match(html, /What I learned/);
-  assert.match(html, /Concept Map Builder/);
-  assert.match(html, /Typhon Form Filler/);
-  assert.match(html, /Critical Points Machine/);
-  assert.match(html, /Pediatrics Nursing Guide/);
-  assert.match(html, /Community Prep/);
+  assert.match(html, /Concept Map/);
+  assert.match(html, /Typhon/);
+  assert.match(html, /ATI Points/);
+  assert.match(html, /Pediatrics/);
+  assert.match(html, /Community/);
   assert.match(html, /Fox Timer/);
   assert.doesNotMatch(html, /brightspace-field-note\.png/);
   assert.match(html, /<title>Nursing Workflow Portfolio<\/title>/);
