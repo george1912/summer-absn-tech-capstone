@@ -12,7 +12,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = "https://george1912.github.io/summer-absn-tech-capstone/";
+const customDomain = process.env.GITHUB_PAGES_CUSTOM_DOMAIN?.trim();
+const siteUrl = customDomain
+  ? `https://${customDomain}/`
+  : "https://george1912.github.io/summer-absn-tech-capstone/";
 const title = "Nursing Workflow Portfolio";
 const description =
   "Six small tools for course files, clinical forms, repeated input, and study focus.";

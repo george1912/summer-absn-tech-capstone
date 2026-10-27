@@ -27,6 +27,16 @@ Then open the local address printed in the terminal.
     npm run build
     node --test tests/rendered-html.test.mjs
 
+## Custom domain
+
+Build the GitHub Pages output for the portfolio's custom domain:
+
+    npm run build:domain
+
+This emits root-relative asset paths and writes `github-pages/CNAME` with
+`gtoolstudio.com`. The existing `npm run build:pages` command still targets the
+repository URL at `/summer-absn-tech-capstone/`.
+
 ## Main files
 
 - app/page.tsx — portfolio sections and the short demonstration
