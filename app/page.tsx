@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Project = {
   name: string;
@@ -129,15 +129,41 @@ export default function Home() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const [turning, setTurning] = useState(false);
+  const [turnDirection, setTurnDirection] = useState<"forward" | "backward">("forward");
+  const [focusedSection, setFocusedSection] = useState("");
+  const mobilePaperRef = useRef<HTMLElement>(null);
   const project = projects[active];
 
   function go(direction: number) {
     if (turning) return;
+    setTurnDirection(direction > 0 ? "forward" : "backward");
     setTurning(true);
     window.setTimeout(() => {
       setActive((current) => (current + direction + projects.length) % projects.length);
-      setTurning(false);
+      mobilePaperRef.current?.scrollTo({ top: 0, behavior: "instant" });
+      window.setTimeout(() => setTurning(false), 80);
     }, 220);
+  }
+
+  function selectProject(index: number) {
+    if (index === active || turning) return;
+    setTurnDirection(index > active ? "forward" : "backward");
+    setTurning(true);
+    window.setTimeout(() => {
+      setActive(index);
+      mobilePaperRef.current?.scrollTo({ top: 0, behavior: "instant" });
+      window.setTimeout(() => setTurning(false), 80);
+    }, 220);
+  }
+
+  function jumpToSection(section: string) {
+    setFocusedSection(section);
+    const container = mobilePaperRef.current;
+    const target = container?.querySelector<HTMLElement>(`[data-section="${section}"]`);
+    if (container && target && window.matchMedia("(max-width: 720px)").matches) {
+      container.scrollTo({ top: Math.max(target.offsetTop - 20, 0), behavior: "smooth" });
+    }
+    window.setTimeout(() => setFocusedSection(""), 900);
   }
 
   useEffect(() => {
@@ -158,51 +184,53 @@ export default function Home() {
         <div className="book-shadow" aria-hidden="true" />
         <div className={`field-book ${open ? "is-open" : "is-closed"}`}>
           <div className="page-block" aria-hidden="true" />
-          <div className={`open-spread ${turning ? "is-turning" : ""}`} aria-hidden={!open}>
+          <div className={`open-spread ${turning ? `is-turning ${turnDirection}` : ""}`} aria-hidden={!open}>
             <article className="paper left-page">
               <div className="page-heading"><span>FIELD NOTE {String(active + 1).padStart(2, "0")}</span><span>{project.type}</span></div>
               <p className="chapter-label">Project {active + 1} of {projects.length}</p>
               <h1>{project.name}</h1>
               <p className="lead-note">{project.thesis}</p>
-              <section className="note-section"><h2><b>01</b> Problem</h2><p>{project.problem}</p></section>
-              <section className="note-section"><h2><b>02</b> Observation</h2><p>{project.observation}</p></section>
+              <section data-section="problem" className={`note-section ${focusedSection === "problem" ? "is-focused" : ""}`}><h2><b>01</b> Problem</h2><p>{project.problem}</p></section>
+              <section data-section="observation" className={`note-section ${focusedSection === "observation" ? "is-focused" : ""}`}><h2><b>02</b> Observation</h2><p>{project.observation}</p></section>
               <AppVisual project={project} />
               <span className="page-number">{String(active * 2 + 1).padStart(2, "0")}</span>
             </article>
             <article className="paper right-page">
               <div className="page-heading"><span>BUILD LOG</span><span>METHOD + REFLECTION</span></div>
-              <section className="note-section"><h2><b>03</b> Inspiration</h2><p>{project.inspiration}</p></section>
-              <section className="note-section"><h2><b>04</b> How I built it</h2><p>{project.build}</p></section>
-              <section className="note-section"><h2><b>05</b> What I learned</h2><p>{project.learning}</p></section>
+              <section data-section="inspiration" className={`note-section ${focusedSection === "inspiration" ? "is-focused" : ""}`}><h2><b>03</b> Inspiration</h2><p>{project.inspiration}</p></section>
+              <section data-section="build" className={`note-section ${focusedSection === "build" ? "is-focused" : ""}`}><h2><b>04</b> How I built it</h2><p>{project.build}</p></section>
+              <section data-section="learning" className={`note-section ${focusedSection === "learning" ? "is-focused" : ""}`}><h2><b>05</b> What I learned</h2><p>{project.learning}</p></section>
               <blockquote>{project.principle}</blockquote>
               <div className="project-actions"><a href={project.href} target="_blank" rel="noreferrer">Open project ↗</a>{project.source && <a href={project.source} target="_blank" rel="noreferrer">Source</a>}</div>
               <span className="page-number">{String(active * 2 + 2).padStart(2, "0")}</span>
             </article>
           </div>
 
-          <article className={`mobile-paper ${turning ? "is-turning" : ""}`} aria-hidden={!open}>
+          <article ref={mobilePaperRef} className={`mobile-paper ${turning ? `is-turning ${turnDirection}` : ""}`} aria-hidden={!open}>
             <div className="page-heading"><span>FIELD NOTE {String(active + 1).padStart(2, "0")}</span><span>{active + 1} / {projects.length}</span></div>
             <p className="chapter-label">{project.type}</p><h1>{project.name}</h1><p className="lead-note">{project.thesis}</p>
             <AppVisual project={project} />
-            <section className="note-section"><h2><b>01</b> Problem</h2><p>{project.problem}</p></section>
-            <section className="note-section"><h2><b>02</b> Observation</h2><p>{project.observation}</p></section>
-            <section className="note-section"><h2><b>03</b> Inspiration</h2><p>{project.inspiration}</p></section>
-            <section className="note-section"><h2><b>04</b> Build</h2><p>{project.build}</p></section>
-            <section className="note-section"><h2><b>05</b> Learning</h2><p>{project.learning}</p></section>
+            <section data-section="problem" className={`note-section ${focusedSection === "problem" ? "is-focused" : ""}`}><h2><b>01</b> Problem</h2><p>{project.problem}</p></section>
+            <section data-section="observation" className={`note-section ${focusedSection === "observation" ? "is-focused" : ""}`}><h2><b>02</b> Observation</h2><p>{project.observation}</p></section>
+            <section data-section="inspiration" className={`note-section ${focusedSection === "inspiration" ? "is-focused" : ""}`}><h2><b>03</b> Inspiration</h2><p>{project.inspiration}</p></section>
+            <section data-section="build" className={`note-section ${focusedSection === "build" ? "is-focused" : ""}`}><h2><b>04</b> Build</h2><p>{project.build}</p></section>
+            <section data-section="learning" className={`note-section ${focusedSection === "learning" ? "is-focused" : ""}`}><h2><b>05</b> Learning</h2><p>{project.learning}</p></section>
             <blockquote>{project.principle}</blockquote>
           </article>
 
           <button className="book-cover" type="button" onClick={() => setOpen(true)} aria-label="Open the nursing innovation field book">
-            <span className="cover-kicker">GTOOLS STUDIO / 2026</span><span className="cover-title">Nursing<br />Innovation<br /><em>Field Book</em></span><span className="cover-rule" /><span className="cover-prompt">Open the field book <b>→</b></span><span className="cover-owner">George · ABSN</span>
+            <span className="cover-kicker">GTOOLS STUDIO / 2026</span><span className="cover-title">Nursing<br />Innovation<br /><em>Field Book</em></span><span className="cover-prompt">Open the field book <b>→</b></span><span className="cover-owner">George · ABSN</span>
           </button>
           <div className="spiral" aria-hidden="true">{Array.from({ length: 13 }).map((_, index) => <i key={index} />)}</div>
+          <nav className="section-bookmarks" aria-label="Jump to project section">
+            {[["problem", "Problem"], ["observation", "Observe"], ["inspiration", "Inspire"], ["build", "Build"], ["learning", "Learn"]].map(([id, label]) => <button type="button" key={id} onClick={() => jumpToSection(id)}>{label}</button>)}
+          </nav>
+          <nav className="project-bookmarks" aria-label="Jump to a project">
+            {projects.map((item, index) => <button type="button" key={item.name} className={index === active ? "active" : ""} onClick={() => selectProject(index)}><span>{String(index + 1).padStart(2, "0")}</span><b>{item.name}</b></button>)}
+          </nav>
+          <button className="page-turn page-turn-prev" type="button" onClick={() => go(-1)} aria-label="Turn to previous project"><span>←</span><small>Previous</small></button>
+          <button className="page-turn page-turn-next" type="button" onClick={() => go(1)} aria-label="Turn to next project"><small>Next</small><span>→</span></button>
         </div>
-
-        <nav className="chapter-nav" aria-label="Project chapters">
-          <button type="button" onClick={() => go(-1)} aria-label="Previous project">←</button>
-          <div>{projects.map((item, index) => <button type="button" key={item.name} className={index === active ? "active" : ""} onClick={() => { setTurning(true); window.setTimeout(() => { setActive(index); setTurning(false); }, 180); }} aria-label={`Open ${item.name}`}>{String(index + 1).padStart(2, "0")}</button>)}</div>
-          <button type="button" onClick={() => go(1)} aria-label="Next project">→</button>
-        </nav>
         <button className="close-book" type="button" onClick={() => setOpen(false)}>Close field book <span>×</span></button>
         <p className="scene-hint">{open ? project.name : "Open the notebook to enter the project"}</p>
       </section>
