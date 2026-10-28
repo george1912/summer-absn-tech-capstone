@@ -1,7 +1,7 @@
 {
-  "name": "GTool Studio — Nursing tools",
+  "name": "GTool Studio",
   "short_name": "GTool Studio",
-  "description": "Seven small tools for course files, clinical forms, repeated input, active recall, and study focus.",
+  "description": "Tools that make nursing school a little easier.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -9,8 +9,14 @@
   "theme_color": "#e9e7df",
   "icons": [
     {
-      "src": "/fox-logo.png",
-      "sizes": "1254x1254",
+      "src": "/icons/gtool-studio-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/gtool-studio-512.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     }

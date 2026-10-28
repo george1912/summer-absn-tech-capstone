@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<defs><pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#283139" stroke-opacity=".055"/></pattern></defs>
+<rect width="1200" height="630" fill="#e9e7df"/>
+<rect x="183" y="55" width="834" height="520" rx="45" fill="#283139"/>
+<rect x="211" y="78" width="778" height="469" rx="24" fill="#faf7ee"/>
+<rect x="211" y="78" width="778" height="469" rx="24" fill="url(#grid)"/>
+<rect x="194" y="309" width="6" height="6" fill="#778b9b"/>
+<rect x="558" y="560" width="84" height="4" rx="2" fill="#a6b0ad"/>
+<text x="600" y="160" fill="#283139" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="38" font-weight="600" letter-spacing="-1">GTool Studio</text>
+<g transform="translate(512 212) scale(5.5)"><path d="M2 6h4V2h6v4h8V2h6v4h4v10h-4v4h-4v4h-4v4h-4v-4h-4v-4H6v-4H2z" fill="#2c4fa8"/><path d="M5 14h5v-4h3v10h3v-7h3v2h6" fill="none" stroke="#faf7ee" stroke-width="2" stroke-linejoin="miter"/></g>
+<text x="600" y="470" fill="#2c4fa8" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="25">Tools that make nursing school a little easier.</text>
+</svg>
